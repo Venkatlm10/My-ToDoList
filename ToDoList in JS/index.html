@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>
+  TO DO LIST
+</title>
+<link rel="icon" href="assets/images/RR.png">
+<style>
+body {
+    border-image: fill;
+  margin: 0;
+  min-width: 250px;
+  background-repeat: no-repeat;
+  background: linear-gradient(rgba(0, 0, 255, 0.596),rgba(255, 255, 255, 0.318));
+  background-image: url(assets/images/R.jpg);
+  background-repeat: no-repeat;
+* {
+  box-sizing: border-box;
+}
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  cursor: pointer;
+  font-family:Comic,Segoe WPC,Segoe UI,sans-serif;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eeeeeeca;
+  font-size: 22px;
+  transition: 0.2s; 
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+  font-weight: bold;
+}
+ul li:hover {
+  background: #ddd;
+}
+ul li.checked {
+  background: #888;
+  color: #140909;
+  text-decoration: line-through;
+  text-decoration-style: wavy;
+}
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #020202;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 20px;
+  width: 7px;
+  text-decoration: solid;
+}
+.close {
+  position: absolute;
+  font-weight: bolder;
+  right: 0;
+  top: 0 , 05px;
+  padding: 12px 16px 12px 16px;
+}
+.close:hover {
+  background-color: #d18b86;
+  right: 0;
+  top:0;
+  border-radius: 40px;
+  color: rgb(8, 7, 7);
+  font-weight: bold;
+}
+.header {
+  background: linear-gradient(rgba(255, 0, 0, 0.493),rgba(0, 0, 255, 0.346));
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+  border-radius: 0px;
+}
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+h1{
+    font-family:Comic,Segoe WPC,Segoe UI,sans-serif;
+}
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+.addBtn {
+  padding: 9px;
+  width: 20%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  float: right;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 15px;
+}
+.addBtn:hover {
+  background-color: #bbb;
+}
+.ror{
+    border-radius: 10px;
+    font-weight:lighter;
+     color: #403d3d;
+     font-size: large;
+}
+#ee{
+    width:20px 2px 20px;
+    font-weight: bolder;
+     color: #403d3d;
+     font-size: large;
+}
+#tt{
+    width:20px 2px 20px;
+    font-weight: bolder;
+     color: #403d3d;
+     font-size: large;
+}
+#tt:hover{
+    background-color: #403d3d52;
+    color: #eee;
+}
+</style>
+</head>
+<body>
+<div id="myDIV" class="header">
+    <b><h1 style="margin: 20px;" > << To Do List >> </h1>
+ <br> <input type="text" id="myInput" class="ror" placeholder="Title...">
+  <span onclick="newElement()" class="addBtn" id="tt">Add</span></b>
+</div>
+<ul id="myUL">
+  <li>Good Morning.</li>
+  <li>Good Afternoon.</li>
+  <li>Good Evening.</li>
+  <li>Good Night.</li>
+  <br>
+  <b><span onclick="newElements()" class="addBtn" id="ee">Edit</span> </b>
+</ul>
+<script>
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+function newElements(){
+    let newItem = document.getElementById("item").value;
+    if (newItem.trim() == "" || newItem.trim() == null)
+        return false;
+    else
+        document.getElementById("item").value = "";
+    let lt = document.createElement("lt");
+    let editButton = document.createElement("button");
+  
+    editButton.className =
+            "btn-success btn btn-sm float-right edit";
+  
+    editButton.appendChild(document.createTextNode("Edit"));
+    lt.appendChild(editButton);
+    if (e.target.classList.contains("edit")) {
+        document.getElementById("item").value =
+            e.target.parentNode.childNodes[0].data;
+        submit.value = "EDIT";
+        editItem = e;
+    }
+}
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }  }
+}
+</script>
+</body>
+</html>
